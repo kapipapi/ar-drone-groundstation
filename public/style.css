@@ -1,0 +1,30 @@
+#batteryStatus {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#batteryStatus::after {
+    content: "";
+    display: block;
+    background-color: black;
+    width: 10px;
+    height: 20px;
+    position: relative;
+    top: -30px;
+    left: 100px;
+}
+
+#procentageBlock {
+    color: black;
+    font-size: 35px;
+    font-family: monospace;
+}
+
+#altitudeStatus {
+    display: inline-block;
+    text-align: center;
+    width: 100px;
+    color: black;
+    font-size: 30px;
+    font-family: monospace;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "lng-webdrone",
+  "description": "Web controller for AR-Drone v2",
+  "version": "0.0.1",
+  "dependencies": {
+    "ar-drone": "git://github.com/felixge/node-ar-drone.git#ccc1e53dea91a9309be034d706235d7e8763065a",
+    "dronestream": "1.1.1",
+    "express": "~3.0.0",
+    "faye": "^0.8.11",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "bower": "~1.2.8"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "repository": "https://github.com/chamerling/drone-browser.git",
+  "homepage": "https://github.com/chamerling/drone-browser"
+}
