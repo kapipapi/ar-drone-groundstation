@@ -10,6 +10,7 @@ app.use(express.static("public"));
 
 // REQUEST FULL NAVDATA
 drone.config("general:navdata_demo", "FALSE");
+drone.config("control:outdoor", "TRUE");
 
 // CAMERA STREAM
 dronestream.listen(server);
@@ -27,6 +28,12 @@ io.on("connection", socket => {
         menageControl(gamepad);
     });
 
+    socket.on("gamepadDisconnect", d => {
+        console.error("GAMEPAD DISCONNECT", d);
+        console.log("LANDING");
+        drone.land();
+    });
+
     socket.on("disconnect", () => {
         console.log("socket disconnected");
     });
@@ -34,7 +41,6 @@ io.on("connection", socket => {
 
 // NAVDATA UPDATE
 drone.on("navdata", data => {
-    console.log(data);
     io.emit("navdata", data);
 });
 
@@ -85,21 +91,24 @@ function isPressed(buttons, button_string) {
 
 function unpressedButton(button_string) {
     // STOP IS UNPRESSED
-    if (["UP", "DOWN", "LEFT", "RIGHT", "L1", "R1"].includes(button_string)) {
+    if (["UP", "DOWN", "LEFT", "RIGHT", "X", "O"].includes(button_string)) {
         console.info("STOP");
         drone.stop();
     }
 }
 
+var axescontrol = true;
 function menageControl(gamepad) {
     var buttons = gamepad.buttons;
     var axes = gamepad.axes;
 
+    // LAND
     if (isPressed(buttons, "SQ")) {
         console.info("LANDING");
         drone.land();
     }
 
+    // TAKE OFF
     if (isPressed(buttons, "TR")) {
         console.info("TAKE OFF");
         drone.takeoff();
@@ -140,9 +149,36 @@ function menageControl(gamepad) {
         drone.right(moveSpeed);
     }
 
+    if (isPressed(buttons, "TOUCHPAD")) {
+        console.info("STOP");
+        drone.stop();
+    }
+
+    // FLIP AHEAD
     if (isPressed(buttons, "R1")) {
         console.info("FLIP AHEAD!");
         drone.animate("flipAhead", 1000);
+    }
+
+    // STEER WITH AXES
+    axes.forEach((item, id) => {
+        axes[id] = Math.round(item * 10) / 10;
+    });
+
+    if (axescontrol) {
+        // ROLL
+        // console.log(axes[0], axes[1], axes[2], axes[3]);
+        if (axes[0] > 0) drone.clockwise(axes[0]);
+        if (axes[0] < 0) drone.counterClockwise(-axes[0]);
+        // THROTTLE
+        if (axes[1] < 0) drone.up(-axes[1]);
+        if (axes[1] > 0) drone.down(axes[1]);
+        //PITCH
+        if (axes[2] > 0) drone.right(axes[2]);
+        if (axes[2] < 0) drone.right(axes[2]);
+        //YAW
+        if (axes[3] < 0) drone.front(-axes[3]);
+        if (axes[3] > 0) drone.back(axes[3]);
     }
 }
 

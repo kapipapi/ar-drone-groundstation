@@ -1,7 +1,5 @@
 function loadComponents() {
     printLedOptions();
-    batteryStatus(test_data);
-    altitudeStatus(test_data);
 }
 
 var socket;
@@ -127,7 +125,8 @@ var test_data = {
 
 // NAVDATA UPDATE
 socket.on("navdata", data => {
-    console.log(data);
+    batteryStatus(data);
+    altitudeStatus(data);
 });
 
 // BATTERY STATUS UPDATE
@@ -139,6 +138,7 @@ function batteryStatus(dronestatus) {
     let batteryMilliVolt = status.rawMeasures.batteryMilliVolt;
 
     var batteryStatus = document.querySelector("#batteryStatus");
+    batteryStatus.onclick = () => console.log(status);
     batteryStatus.style.border = "3px solid black";
     batteryStatus.style.width = "100px";
     batteryStatus.style.height = "40px";
@@ -207,10 +207,11 @@ var gamepad, gamepadtimer;
 function gamepadHandler(event, status) {
     if (status) {
         gamepad = event.gamepad;
-        gamepadtimer = setInterval(() => updateGamepadStatus(), 10);
+        gamepadtimer = setInterval(() => updateGamepadStatus(), 30);
         console.log("gamepad connected");
         document.querySelector("#gamepadStatus").style.color = "green";
     } else {
+        socket.emit("gamepadDisconnect", true);
         delete gamepad;
         clearInterval(gamepadtimer);
         document.querySelector("#gamepadStatus").style.color = "red";
@@ -270,7 +271,9 @@ function printGamepad() {
     gamepadContainer.innerHTML = "";
     gamepad.axes.forEach((val, id) => {
         var axis = document.createElement("p");
-        axis.innerHTML = axisName[id] + " = " + val;
+        var prev = val;
+        val = Math.round(val * 10) / 10;
+        axis.innerHTML = axisName[id] + " = " + val + " (" + prev + ")";
         gamepadContainer.appendChild(axis);
     });
     gamepad.buttons.forEach((val, id) => {
