@@ -1,0 +1,42 @@
+pose:
+score: 0.5303214942584472
+keypoints: Array(17)
+0: {score: 0.9999054670333862, part: "nose", position: {…}}
+1: {score: 0.9999474287033081, part: "leftEye", position: {…}}
+2: {score: 0.9998151063919067, part: "rightEye", position: {…}}
+3: {score: 0.9623517990112305, part: "leftEar", position: {…}}
+4: {score: 0.9457079172134399, part: "rightEar", position: {…}}
+5: {score: 0.934464156627655, part: "leftShoulder", position: {…}}
+6: {score: 0.9588136672973633, part: "rightShoulder", position: {…}}
+7: {score: 0.5089730024337769, part: "leftElbow", position: {…}}
+8: {score: 0.7155741453170776, part: "rightElbow", position: {…}}
+9: {score: 0.39181721210479736, part: "leftWrist", position: {…}}
+10: {score: 0.5809224247932434, part: "rightWrist", position: {…}}
+11: {score: 0.0045151012018322945, part: "leftHip", position: {…}}
+12: {score: 0.0014888278674334288, part: "rightHip", position: {…}}
+13: {score: 0.0040153092704713345, part: "leftKnee", position: {…}}
+14: {score: 0.0035211131907999516, part: "rightKnee", position: {…}}
+15: {score: 0.0020541674457490444, part: "leftAnkle", position: {…}}
+16: {score: 0.0015785564901307225, part: "rightAnkle", position: {…}}
+length: 17
+__proto__: Array(0)
+nose: {x: 214.11171506022848, y: 161.0169568257025, confidence: 0.9999054670333862}
+leftEye: {x: 222.60572336309136, y: 151.9922577707391, confidence: 0.9999474287033081}
+rightEye: {x: 205.17477771692108, y: 152.63639723348336, confidence: 0.9998151063919067}
+leftEar: {x: 236.2708943210847, y: 156.6918365578902, confidence: 0.9623517990112305}
+rightEar: {x: 192.04591399744936, y: 158.4144862004888, confidence: 0.9457079172134399}
+leftShoulder: {x: 259.61523039299146, y: 202.83857022112574, confidence: 0.934464156627655}
+rightShoulder: {x: 166.719263311018, y: 211.9660787833364, confidence: 0.9588136672973633}
+leftElbow: {x: 316.6286822926928, y: 175.26789258098046, confidence: 0.5089730024337769}
+rightElbow: {x: 92.02258572940937, y: 183.33736107363336, confidence: 0.7155741453170776}
+leftWrist: {x: 345.92380133288646, y: 85.1164854618541, confidence: 0.39181721210479736}
+rightWrist: {x: 63.40728045904148, y: 107.90312962225306, confidence: 0.5809224247932434}
+leftHip: {x: 258.18951946950096, y: 288.4951891536601, confidence: 0.0045151012018322945}
+rightHip: {x: 170.46569786922277, y: 322.97675974884925, confidence: 0.0014888278674334288}
+leftKnee: {x: 246.0425263399269, y: 312.8205950218334, confidence: 0.0040153092704713345}
+rightKnee: {x: 171.613309927154, y: 322.95074513084006, confidence: 0.0035211131907999516}
+leftAnkle: {x: 247.82173782761333, y: 328.62313212009894, confidence: 0.0020541674457490444}
+rightAnkle:
+x: 170.76959614865262
+y: 328.9226758828637
+confidence: 0.0015785564901307225

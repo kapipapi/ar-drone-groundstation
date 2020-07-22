@@ -3,10 +3,11 @@
   "description": "Web controller for AR-Drone v2",
   "version": "0.0.1",
   "dependencies": {
-    "ar-drone": "git://github.com/felixge/node-ar-drone.git#ccc1e53dea91a9309be034d706235d7e8763065a",
+    "ar-drone": "git+https://github.com/felixge/node-ar-drone.git",
     "dronestream": "1.1.1",
-    "express": "~3.0.0",
+    "express": "^4.17.1",
     "faye": "^0.8.11",
+    "raw-socket": "^1.7.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {

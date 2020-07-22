@@ -16,19 +16,24 @@ drone.config("control:outdoor", "TRUE");
 dronestream.listen(server);
 
 // SETUP SOCKET
-io.on("connection", socket => {
+io.on("connection", (socket) => {
     console.log("socket connected");
 
-    socket.on("led", color => {
+    socket.on("led", (color) => {
         console.warn("LED CHANGE -", color);
         drone.animateLeds(color, 4, 1);
     });
 
-    socket.on("gamepad", gamepad => {
+    socket.on("action", (action) => {
+        console.warn("ACTION - ", action);
+        drone.animate(action, 1000);
+    });
+
+    socket.on("gamepad", (gamepad) => {
         menageControl(gamepad);
     });
 
-    socket.on("gamepadDisconnect", d => {
+    socket.on("gamepadDisconnect", (d) => {
         console.error("GAMEPAD DISCONNECT", d);
         console.log("LANDING");
         drone.land();
@@ -40,7 +45,7 @@ io.on("connection", socket => {
 });
 
 // NAVDATA UPDATE
-drone.on("navdata", data => {
+drone.on("navdata", (data) => {
     io.emit("navdata", data);
 });
 
@@ -64,7 +69,7 @@ let buttonName = [
     "LEFT",
     "RIGHT",
     "PS",
-    "TOUCHPAD"
+    "TOUCHPAD",
 ];
 
 /**
@@ -152,12 +157,6 @@ function menageControl(gamepad) {
     if (isPressed(buttons, "TOUCHPAD")) {
         console.info("STOP");
         drone.stop();
-    }
-
-    // FLIP AHEAD
-    if (isPressed(buttons, "R1")) {
-        console.info("FLIP AHEAD!");
-        drone.animate("flipAhead", 1000);
     }
 
     // STEER WITH AXES
