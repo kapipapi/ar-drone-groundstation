@@ -8,7 +8,7 @@
     "express": "^4.17.1",
     "faye": "^0.8.11",
     "raw-socket": "^1.7.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "bower": "~1.2.8"
