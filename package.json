@@ -5,13 +5,13 @@
   "dependencies": {
     "ar-drone": "git+https://github.com/felixge/node-ar-drone.git",
     "dronestream": "1.1.1",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "faye": "^0.8.11",
     "raw-socket": "^1.7.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "bower": "~1.2.8"
+    "bower": "~1.8.14"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
