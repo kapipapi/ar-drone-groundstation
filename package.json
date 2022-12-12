@@ -5,7 +5,7 @@
   "dependencies": {
     "ar-drone": "git+https://github.com/felixge/node-ar-drone.git",
     "dronestream": "1.1.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "faye": "^0.8.11",
     "raw-socket": "^1.7.0",
     "socket.io": "^2.3.0"
